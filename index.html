@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<lang="en">
+<html lang="en">
 
 <head>
 	<title>Sarcastic Domain Generator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link href="style.css" rel="stylesheet">	
+	<script>
+		function Get(yourUrl)
+		{
+			var Httpreq = new XMLHttpRequest(); // a new request
+			Httpreq.open("GET",yourUrl,false);
+			Httpreq.send(null);
+			return Httpreq.responseText;          
+		}
+	</script>
 </head>
 
 <body>
-	<h2>Sarcastic Domain Generator</h2>
+	<main>
+		<h2 id="title">S D G</h2>
+		<div class="main-content">
+			<div id="domain-generator">
+				<h4 id="domain-header">Here's your new domain:</h4>
+				<script>
+					var json_obj = JSON.parse(Get("https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=4&maxLength=9&limit=1&api_key=8e529160e4044ac5840b235a45b0c082de7e460e9c8a5fbe9"));
+					document.write(json_obj.word);					
+				</script>
+			</div>
+			<div id="about">
+				<p>This is my paragraph with information.</p>
+			</div>
+		</div>
+	</main>
+	
+	<footer>
+		<p class="footer-text">&copy; Zach Burkhardt. All Rights Reserved.</p>
+	</footer>
 </body>
