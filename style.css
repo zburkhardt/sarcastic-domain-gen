@@ -17,7 +17,7 @@ button {box-shadow:0px 0px 15px 3px #2A466B;
 		padding:12px 25px;
 		text-decoration:none;
 		background-color:#44c767;
-		border-radius:28px;
+		border-radius:15px;
 		border:1px solid #18ab29;
 		font-weight: bold;
 		margin-left: 10px;
@@ -62,7 +62,8 @@ footer {position: absolute;
 					   padding-left: 0px;
 					   padding-right: 0px;
 					   padding-bottom: 30px;
-					   box-shadow:0px 0px 15px 3px #2A466B;}
+					   box-shadow:0px 0px 15px 3px #2A466B;
+					   border-radius: 15px;}
 #buttons {width: 90%;
 		  margin-top: 35px;}
 			   
