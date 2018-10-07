@@ -14,27 +14,64 @@
 			Httpreq.send(null);
 			return Httpreq.responseText;          
 		}
+		function parseXml(xmlStr)
+		{
+			return new window.DOMParser().parseFromString(xmlStr, "text/xml");
+		}
+		function newDomain()
+		{
+			var i = 0;
+			
+			do
+			{
+				// Get list of random words
+				var word_json = JSON.parse(Get("https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=2&maxLength=6&limit=10&api_key=8e529160e4044ac5840b235a45b0c082de7e460e9c8a5fbe9"));
+				
+				// Combine words into domain name
+				var domain = (word_json[i].word + word_json[i + 1].word + ".com")
+				document.write(domain);
+				
+				// Test combined domain name for availability
+				var domainLink = "https://www.namesilo.com/api/checkRegisterAvailability?version=1&type=xml&key=09903a7b22e81f7563021b7c&domains=" + domain;
+				console.log(Get(domainLink));
+				
+				// Set buy domain button
+				var buyDomain = "https://www.godaddy.com/domainsearch/find?checkAvail=1&tmskey=&domainToCheck=" + domain;
+				
+				++i;
+			} while (i < 1);
+			
+			var xml = parseXml(domainLink);
+			alert(xml.namesilo.childNode[1]);
+		}
 	</script>
 </head>
 
 <body>
 	<main>
-		<h2 id="title">S D G</h2>
+		<h2 id="title">SARCASTIC DOMAIN GENERATOR</h2>
+		<h3 id="subtitle">"Because <i><b>everyone</b></i> needs sarcasm in their life"</h3>
 		<div class="main-content">
-			<div id="domain-generator">
-				<h4 id="domain-header">Here's your new domain:</h4>
-				<script>
-					var json_obj = JSON.parse(Get("https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=4&maxLength=9&limit=1&api_key=8e529160e4044ac5840b235a45b0c082de7e460e9c8a5fbe9"));
-					document.write(json_obj.word);					
-				</script>
-			</div>
 			<div id="about">
-				<p>This is my paragraph with information.</p>
+				<p id="about-text"><i>Ohhhhhhh</i>, look who decided to show up. Need a domain there, genius?</p>
 			</div>
+			<div id="domain-generator">
+				<div id="domain-generator-box">
+					<h4 id="domain-header">Here's your new domain:</h4>
+					<script>
+						newDomain();
+					</script>
+				</div>
+				<div id="buttons">
+					<button onclick="window.location=buyDomain;">Buy Domain</button>
+					<button>Generate</button>
+				</div>
+			</div>
+
 		</div>
 	</main>
 	
 	<footer>
-		<p class="footer-text">&copy; Zach Burkhardt. All Rights Reserved.</p>
+		<p id="footer-text">&copy; Zach Burkhardt. All Rights Reserved.</p>
 	</footer>
 </body>
